@@ -37,5 +37,5 @@ end
 
 chef_gem "libarchive-ruby" do
   version "0.0.3"
-  compile_time false
+  compile_time false if respond_to?(:compile_time)
 end
