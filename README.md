@@ -1,6 +1,9 @@
+![Release](https://img.shields.io/badge/release-v0.6.1-blue.svg)
+![License](https://img.shields.io/badge/license-Apache2-blue.svg)
+
 # libarchive-cookbook
 
-A library cookbook that provides LWRPs for extracting archive files
+A [library cookbook][0] that provides LWRPs for extracting archive files
 
 ## Requirements
 
@@ -11,18 +14,18 @@ A library cookbook that provides LWRPs for extracting archive files
 * Ubuntu
 * CentOS (RHEL)
 * Arch Linux
+* Mac OS X
 
 ## Usage
 
 ```ruby
-include_recipe "libarchive::default"
+include_recipe 'libarchive::default'
 
-libarchive_file "my_archive.tar.gz" do
-  path "/path/to/artifact/my_archive.tar.gz"
-  extract_to "/path/to/extraction"
-  owner "reset"
-  group "reset"
-
+libarchive_file 'my_archive.tar.gz' do
+  path '/path/to/artifact/my_archive.tar.gz'
+  extract_to '/path/to/extraction'
+  owner 'reset'
+  group 'reset'
   action :extract
 end
 ```
@@ -39,7 +42,7 @@ Include this recipe before leveraging any of the LWRPs provided by this cookbook
 
 - **extract** - extracts the contents of the archive to the destination on disk. (default)
 
-### Paramter Attributes
+### Parameter Attributes
 
 - **path** - filepath to the archive to extract (name attribute)
 - **owner** - set the owner of the extracted files
@@ -56,3 +59,5 @@ Include this recipe before leveraging any of the LWRPs provided by this cookbook
 
 Author:: Jamie Winsor (<jamie@vialstudios.com>)
 Author:: John Bellone (<jbellone@bloomberg.net>)
+
+[0]: http://blog.vialstudios.com/the-environment-cookbook-pattern#thelibrarycookbook
