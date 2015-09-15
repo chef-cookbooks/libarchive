@@ -6,23 +6,16 @@
 #
 
 include_recipe 'apt::default' if platform_family?('debian')
-if platform_family?('redhat')
-  include_recipe 'yum-epel::default' if node[:platform_version].to_i == 5
+if platform_family?('rhel')
+  include_recipe 'yum-epel::default' if node['platform_version'].to_i == 5
 end
 
-package node[:libarchive][:package_name] do
-  version node[:libarchive][:package_version] if node[:libarchive][:package_version]
-  action :nothing
-end.run_action(:upgrade)
+package node['libarchive']['package_name'] do
+  version node['libarchive']['package_version'] if node['libarchive']['package_version']
+  action :upgrade
+end unless platform_family?('mac_os_x')
 
-if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
-  chef_gem 'ffi-libarchive' do
-    version '~> 0.2.0'
-    compile_time true
-  end
-else
-  chef_gem 'ffi-libarchive' do
-    version '~> 0.2.0'
-    action :nothing
-  end.run_action(:install)
+chef_gem 'ffi-libarchive' do # ~FC009
+  version '~> 0.2.0'
+  compile_time true if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
 end
