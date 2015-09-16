@@ -61,7 +61,7 @@ describe 'libarchive::default' do
       ChefSpec::SoloRunner.new(
         platform: 'mac_os_x',
         version: '10.10'
-      kit).converge(described_recipe)
+      ).converge(described_recipe)
     end
 
     it 'does not upgrade the libarchive package' do
