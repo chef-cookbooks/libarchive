@@ -4,10 +4,12 @@
 #
 # Author:: Jamie Winsor (<jamie@vialstudios.com>)
 #
-if platform_family?('debian')
-  default['libarchive']['package_name'] = 'libarchive-dev'
-elsif platform_family?('rhel')
-  default['libarchive']['package_name'] = 'libarchive-devel'
-else
-  default['libarchive']['package_name'] = 'libarchive'
+
+default[:libarchive][:package_name] =
+case node[:platform_family]
+when 'debian' then 'libarchive-dev'
+when 'rhel' then 'libarchive-devel'
+else 'libarchive'
 end
+
+default[:libarchive][:package_version] = nil

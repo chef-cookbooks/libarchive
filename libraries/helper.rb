@@ -6,6 +6,7 @@
 #
 
 module LibArchiveCookbook
+  # Helpers for LibArchiveCookbook
   module Helper
     class << self
       # This can't be a constant since we might not have required 'ffi-libarchive' yet.
@@ -18,7 +19,7 @@ module LibArchiveCookbook
           acl: Archive::EXTRACT_ACL,
           fflags: Archive::EXTRACT_FFLAGS,
           extended_information: Archive::EXTRACT_XATTR,
-          xattr: Archive::EXTRACT_XATTR,
+          xattr: Archive::EXTRACT_XATTR
         }
       end
 
